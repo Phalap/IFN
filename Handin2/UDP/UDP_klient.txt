@@ -1,0 +1,22 @@
+#!/usr/bin/env python3
+import socket
+ 
+UDP_IP = "10.0.0.1"
+UDP_PORT = 9001
+MESSAGE = raw_input('Enter either U or L: ')
+
+print "UDP target IP:", UDP_IP
+print "UDP target port:", UDP_PORT
+print "Sent:", MESSAGE
+ 
+sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+sock.sendto(MESSAGE, (UDP_IP, UDP_PORT))
+
+while True:
+	data, addr = sock.recvfrom(1024)
+	print ("Received:")
+	print (data)
+
+	print("Socket closing...")
+	sock.close()
+	quit()
