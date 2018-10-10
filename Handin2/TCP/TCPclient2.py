@@ -1,7 +1,7 @@
 #!/usr/bin/env python
  
 import socket
-
+from struct import unpack
 
 TCP_IP = '127.0.0.1'
 TCP_PORT = 37
@@ -14,4 +14,8 @@ s.send(bytes(MESSAGE, "utf-8"))
 data = s.recv(BUFFER_SIZE)
 s.close()
 
-print ("received data:", data)
+time = unpack("I", data)
+#Removing junk from the printout
+time = time[0]
+
+print("received data: " +  str(time))
