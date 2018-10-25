@@ -20,10 +20,7 @@ string_epoch = str(epoch_time)
 time = pack('I',epoch_time)
 
 print ('Connected by', addr)
-while 1:
-    data = conn.recv(1024)
-    if not data: break
 
-    conn.sendall(time)
-    print("Message sent: ", string_epoch)
+conn.sendall(time)
+print("Message sent: ", string_epoch)
 conn.close()
