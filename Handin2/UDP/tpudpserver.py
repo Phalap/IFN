@@ -2,6 +2,7 @@
 
 import socket
 import time
+from struct import pack
 
 UDP_IP = "127.0.0.1"
 UDP_PORT = 37
@@ -19,6 +20,8 @@ while True:
     epoch_time = int(time.time()) + 2208988800
     string_epoch = str(epoch_time)
 
-    sock.sendto(bytes(string_epoch, "utf-8"), addr)
+    time = pack('I',epoch_time)
+
+    sock.sendto(time, addr)
     print("Server has now responded with time and date to client")
 
